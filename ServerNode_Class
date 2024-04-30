@@ -1,0 +1,24 @@
+import java.util.*;
+import java.util.Map.Entry;
+public class ServerNode {
+    ClientNode client;
+    Map<String, ClientNode> nodes = new HashMap<>();
+    Star star_lan;
+    Scanner input = new Scanner(System.in);
+    
+    //to connect the clients to the server node
+    public void insertClient(String id,ClientNode client){
+        nodes.put(id,client);
+        client = nodes.get(id);
+        client.id = id;
+    }
+    //To remove the client from the server node
+    public void deleteClient(String id){
+        nodes.remove(id);
+    }
+    // this is where the server manages the messages
+    public void manageMessages(String sendID, String recieveID, String message){
+        client = nodes.get(recieveID);
+        client.recieve(sendID, message);        
+    }
+}
