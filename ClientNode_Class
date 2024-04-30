@@ -1,0 +1,21 @@
+public class ClientNode{
+
+    String id;
+    //Constructer for client
+    public ClientNode(String id){
+        this.id = id;
+    }
+
+    public String getClientName(){
+        return id;
+    }
+    //Send method to send message to client
+    public void send(ServerNode server,String recieveID,String message){
+        server.manageMessages(this.id,recieveID, message);
+    }
+    //Recieve method of the client
+    public void recieve(String sendID, String message){
+
+        System.out.println("From: " + this.id + " To: " + sendID + "  Message: " + message);
+    }
+}
