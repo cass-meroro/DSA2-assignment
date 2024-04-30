@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Star{
+    ServerNode server;
+    ClientNode client;
+    
+    //Constructor for star class
+    public Star(){
+        server = new ServerNode();
+    }
+    //Insert a new node into the network
+    public void insertNode(String id, ClientNode client){
+        server.nodes.put(id, client);
+    }
+    //delete a node from the network
+    public void deleteNode(String id){
+        server.nodes.remove(id);
+    }
+    //Shows all the client connected to the network
+    public void showAll(){
+        for(String clients : server.nodes.keySet()){
+            System.out.println(clients);
+        }
+    }
+}
