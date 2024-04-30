@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Star star_network = new Star();
+        
+        Scanner input = new Scanner(System.in);
+        boolean running = true;
+        while(running){
+            
+            System.out.println("Enter Number for choice in the network:\n\t1. Show Clients in Network \n\t2.Add Client into Network\n\t3.Delete Client\n\t4.Send Message\n5.end program");
+            String choice = input.next();
+            if(choice.equals("1")){
+                star_network.showAll();
+            }
+            else if(choice.equals("2")){
+                //Connect a client to the network
+                System.out.println("Connect a new client:");
+                String name = input.next();
+                ClientNode client = new ClientNode(name);
+                star_network.insertNode(name,client);
+            }
+            
+            else if(choice.equals("3")){
+                //To if is to delete a client in the network
+                System.out.println("Enter the  Client to be deleted:");
+                String name = input.next();
+                star_network.deleteNode(name);
+            }
+
+            else if(choice.equals("4")){
+                
+                    System.out.println("From:");
+                    //input.next();
+                    String name = input.next();
+                    ClientNode client = new ClientNode(name);
+                    System.out.println("To: ");
+                    String name2 = input.next();
+                    System.out.println("Message: ");
+                    input.nextLine();
+                    String message = input.nextLine();
+                    CompressionAlgo zip = new CompressionAlgo();
+                    //this commpresses the message
+                    message = zip.compressor(message);
+                    client.send(star_network.server,name2, message);
+                }
+            //Terminates the network
+            else if(choice.equals("5")){
+                running = false;
+            } 
+        }
+
+    }
+}
